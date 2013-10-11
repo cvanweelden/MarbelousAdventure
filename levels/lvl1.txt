@@ -1,0 +1,7 @@
+FFFFFFFF
+F......F
+F.T..T.F
+F.T..T.F
+F..GP..F
+F......F
+FFFFFFFF
