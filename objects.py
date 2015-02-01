@@ -44,7 +44,8 @@ class Goat(GameObject):
         super(Goat,self).__init__(*args, **kwargs)
 
     def setup(self):
-        self.follow(self.world.player)
+        #self.follow(self.world.player)
+        pass
 
     def follow(self, obj):
         self.target = obj
@@ -70,7 +71,19 @@ class Princess(GameObject):
             target = (i-1,j)
         elif direction == 'd':
             target = (i+1,j)
-        if self.world.get(target) is None:
+        if self.world.get(target) is None and target[0] >= 0 and target[1] >= 0 and target[0] <= self.world.size[0] and target[1] <= self.world.size[1]:
             self.coords = target
+            
+    def checkforgoats(self):
+    	i,j = self.coords
+    	neighbors = [(i-1,j),(i+1,j),(i,j-1),(i,j+1)]
+        for n in neighbors:
+        	obj = self.world.get(n)
+        	if obj.__class__ is Goat:
+        		obj.follow(self)
+    
+    def update(self):
+    	self.checkforgoats()
+    	
 
     
